@@ -1,6 +1,11 @@
 import unittest
 from problem_w3 import check_uet_success
 
+"""
+    Để chạy test, trong terminal gõ lệnh python dicision_table.py
+
+"""
+
 class CheckingUETSuccess(unittest.TestCase):
     def test_R1(self):
         specialized = "CNTT"
@@ -41,14 +46,14 @@ class CheckingUETSuccess(unittest.TestCase):
     def test_invalid_specialized(self):
         specialized = "Khoa học máy tính"
         score = 20
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, ValueError)
+        with self.assertRaises(ValueError):
+            check_uet_success(score, specialized)
 
     def test_invalid_score(self):
         specialized = "CNTT"
         score = 32
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, ValueError)
+        with self.assertRaises(ValueError):
+            check_uet_success(score, specialized)
 
 if __name__ == '__main__': 
     suite = unittest.TestLoader().loadTestsFromTestCase(CheckingUETSuccess)
