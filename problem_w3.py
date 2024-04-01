@@ -29,7 +29,7 @@ def caculate_baking_time(mass, meatName):
             return 10*mass
         else:
             return 10 + 5*mass
-    elif meatName == "Gà":
+    else:
         if mass < 2:
             return 8*mass
         else:

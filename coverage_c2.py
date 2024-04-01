@@ -1,40 +1,46 @@
 import unittest
-from problem_w3 import check_uet_success
+from problem_w3 import caculate_baking_time
 """
     Để chạy test, mở terminal và nhập lệnh python coverage_c2.py
 
 """
-class CheckUETSuccessCoverageC2(unittest.TestCase):
+class CheckCoverangeC2(unittest.TestCase):
     def test1(self):
-        score = -10
-        specialized = "CNTT"
+        mass = 1
+        meatName = "Chó"
         with self.assertRaises(ValueError):
-            check_uet_success(score, specialized)
+            caculate_baking_time(mass, meatName)
 
     def test2(self):
-        score = 25
-        specialized = "Other"
+        mass = 6
+        meatName = "Lợn"
         with self.assertRaises(ValueError):
-            check_uet_success(score, specialized)
+            caculate_baking_time(mass, meatName)
 
     def test3(self):
-        score = 25
-        specialized = "CKT"
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Đỗ")
+        mass = 1
+        meatName = "Lợn"
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 10)
 
     def test4(self):
-        score = 29
-        specialized = "CNTT"
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Đỗ")
+        mass = 3
+        meatName = "Lợn"
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 25)
 
     def test5(self):
-        score = 20
-        specialized = "CNTT"
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Trượt")
+        mass = 1
+        meatName = "Gà"
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 8)
+
+    def test6(self):
+        mass = 3
+        meatName = "Gà"
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 20)
 
 if __name__ == '__main__': 
-    suite = unittest.TestLoader().loadTestsFromTestCase(CheckUETSuccessCoverageC2)
+    suite = unittest.TestLoader().loadTestsFromTestCase(CheckCoverangeC2)
     unittest.TextTestRunner(verbosity=2).run(suite)
