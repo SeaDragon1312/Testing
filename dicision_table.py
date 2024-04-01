@@ -1,5 +1,5 @@
 import unittest
-from problem_w3 import check_uet_success
+from problem_w3 import caculate_baking_time
 
 """
     Để chạy test, trong terminal gõ lệnh python dicision_table.py
@@ -8,52 +8,40 @@ from problem_w3 import check_uet_success
 
 class CheckingUETSuccess(unittest.TestCase):
     def test_R1(self):
-        specialized = "CNTT"
-        score = 20
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Trượt")
+        meatName = "Lợn"
+        mass = 1
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 10)
     
     def test_R2(self):
-        specialized = "CNTT"
-        score = 26
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Trượt")
+        meatName = "Lợn"
+        mass = 3
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 25)
     
     def test_R3(self):
-        specialized = "CNTT"
-        score = 29
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Đỗ")
+        meatName = "Gà"
+        mass = 1
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 8)
 
     def test_R4(self):
-        specialized = "CKT"
-        score = 20
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Trượt")
+        meatName = "Gà"
+        mass = 3
+        result = caculate_baking_time(mass, meatName)
+        self.assertEqual(result, 20)
 
-    def test_R5(self):
-        specialized = "CKT"
-        score = 26
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Đỗ")
-
-    def test_R6(self):
-        specialized = "CKT"
-        score = 29
-        result = check_uet_success(score, specialized)
-        self.assertEqual(result, "Đỗ")
-
-    def test_invalid_specialized(self):
-        specialized = "Khoa học máy tính"
-        score = 20
+    def test_invalid_meatName(self):
+        meatName = "Bò"
+        mass = 2
         with self.assertRaises(ValueError):
-            check_uet_success(score, specialized)
+            caculate_baking_time(mass, meatName)
 
-    def test_invalid_score(self):
-        specialized = "CNTT"
-        score = 32
+    def test_invalid_mass(self):
+        meatName = "Lợn"
+        mass = 6
         with self.assertRaises(ValueError):
-            check_uet_success(score, specialized)
+            caculate_baking_time(mass, meatName)
 
 if __name__ == '__main__': 
     suite = unittest.TestLoader().loadTestsFromTestCase(CheckingUETSuccess)

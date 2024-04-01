@@ -1,31 +1,36 @@
-def check_uet_success(score, specialized):
+def caculate_baking_time(mass, meatName):
     """
-    Kiểm tra kết quả đỗ đại học của thí sinh dựa trên điểm thi và ngành học mong muốn.
+    Tính thời gian nướng thịt hợp lý cho một lò vi sóng tự động dựa trên loại thịt và khối lượng.
 
     Pramaters:
-        score (float): Điểm thi của thí sinh.
-        specialized (string): Ngành học sinh viên muốn ứng tuyển.
+        meatName (string): Tên loại thịt, có hai loại là "Lợn" hoặc "Gà".
+        mass (float): Khối lượng thịt cần nướng (kg).
 
     Returns:
-        str: Kết quả có đỗ chuyên ngành đó không ("Đỗ" hoặc "Trượt").
+        float: Thời giannướng thịt hợp lý (phút).
 
     Raises:
-        ValueError: Nếu ngành học không hợp lệ hoặc điểm thi không nằm trong khoảng từ 0 đến 30.
+        ValueError: Nếu tên thịt không hợp lệ hoặc khối lượng thịt không nằm trong khoảng 0 < m <= 5.
+        
 
     """
     
-    # Kiểm tra tính hợp lệ của ngành
-    if specialized not in ["CNTT", "CKT"]:
-        raise ValueError("Chuyên ngành không hợp lệ, chuyên ngành hợp lệ là CNTT hoặc CKT.")
+    # Kiểm tra tính hợp lệ của tên thịt
+    if meatName not in ["Lợn", "Gà"]:
+        raise ValueError("Loại thịt không hợp lên, loại thịt hợp lên là thịt lợn hoặc thịt gà.")
     
-    # Kiểm tra tính hợp lệ của điểm thi
-    if not 0 <= score <= 30:
-        raise ValueError("Điểm thi không hợp lệ. Điểm thi phải nằm trong khoảng từ 0 đến 30.")
+    # Kiểm tra tính hợp lệ của khối lượng
+    if not 0 < mass <= 5:
+        raise ValueError("Khối lượng không hợp lệ. Khối lượng phải nằm trong khoảng 0 < m <=5.")
     
-    # Kiểm tra ngành học và điểm thi để xác nhận kết quả
-    if specialized == "CKT" and score >=25:
-        return "Đỗ"
-    elif specialized == "CNTT" and score >= 27:
-        return "Đỗ"
-    else:
-        return "Trượt"
+    # Tính toán kết quả theo công thức
+    if meatName == "Lợn":
+        if mass < 2:
+            return 10*mass
+        else:
+            return 10 + 5*mass
+    elif meatName == "Gà":
+        if mass < 2:
+            return 8*mass
+        else:
+            return 8 +4*mass
